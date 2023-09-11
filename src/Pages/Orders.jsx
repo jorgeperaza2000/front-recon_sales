@@ -8,7 +8,7 @@ export const Orders = () => {
 							Orders
 						</h5>
                         <div>
-                            <button className="btn btn-primary"><i className="ti ti-plus fs-4"></i> Add</button>
+                            <button className="btn btn-primary"><i className="ti ti-plus fs-4"></i> New</button>
                         </div>
                     </div>
 					<div className="card-body p-4">
