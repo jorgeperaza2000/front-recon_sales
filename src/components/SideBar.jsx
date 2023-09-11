@@ -48,7 +48,7 @@ export default function SideBar() {
                             <li className="nav-small-cap">
                                 <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
                                 <span className="hide-menu">
-                                    UI COMPONENTS
+                                    Operations
                                 </span>
                             </li>
                             <li className="sidebar-item">
