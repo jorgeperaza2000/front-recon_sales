@@ -53,7 +53,7 @@ export default function SideBar() {
 									<i className="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
 								</div>
 								<span className="nav-link-text ms-1">
-									Tables
+									Teams
 								</span>
 							</NavLink>
 						</li>
