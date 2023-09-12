@@ -1,87 +1,79 @@
 import { useState, useEffect } from "react";
 
 export const Orders = () => {
-    const [teams, setTeams] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
-    useEffect(() => {
-        setIsLoaded(false)
-        fetch('https://api-tdd.vercel.app/api/api/teams')
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setTeams(data);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            })
-            .finally(() => {
-                setIsLoaded(true)
-            });
-    }, []);
+	const [teams, setTeams] = useState([]);
+	const [isLoaded, setIsLoaded] = useState(false);
+	useEffect(() => {
+		setIsLoaded(false);
+		fetch("https://api-tdd.vercel.app/api/api/teams")
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				setTeams(data);
+			})
+			.catch((err) => {
+				console.log(err.message);
+			})
+			.finally(() => {
+				setIsLoaded(true);
+			});
+	}, []);
 
-    return (
-        <>
-            <div className="col-lg-12 d-flex align-items-stretch">
-                <div className="card w-100">
-                    <div className="card-header d-flex align-middle justify-content-between">
-                        <h5 className="card-title fw-semibold my-auto">
-                            Orders
-                        </h5>
-                        <div>
-                            <button className="btn btn-primary"><i className="ti ti-plus fs-4"></i> New</button>
+	return (
+		<>
+            <div className="row">
+                <div className="col-12">
+                    <div className="card mb-4">
+                        <div className="card-header pb-0">
+                            <div className="d-flex justify-content-between">
+                                <h6>Teams</h6>
+                                <button className="btn btn-outline-primary btn-sm px-4 mb-0">Add</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="card-body p-4">
-                        <div className="table-responsive">
-                            <table className="table table-striped text-nowrap mb-0 align-middle">
-                                <thead className="text-dark fs-4">
-                                    <tr>
-                                        <th className="border-bottom-0">
-                                            <h6 className="fw-semibold mb-0">Id</h6>
-                                        </th>
-                                        <th className="border-bottom-0">
-                                            <h6 className="fw-semibold mb-0">
-                                                Name
-                                            </h6>
-                                        </th>
-                                        <th className="border-bottom-0">
-                                            <h6 className="fw-semibold mb-0">
-                                                Abbreviation
-                                            </h6>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {!isLoaded &&
+                        <div className="card-body px-0 pt-0 pb-2">
+                            <div className="table-responsive px-4">
+                                <table className="table align-items-center mb-0">
+                                    <thead>
                                         <tr>
-                                            <td colSpan="3" className="border-bottom-0 text-center">
-                                                <h6 className="fw-semibold mb-0">Loading...</h6>
-                                            </td>
+                                            <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Name
+                                            </th>
+                                            <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Abbreviation
+                                            </th>
                                         </tr>
-                                    }
-                                    {isLoaded && teams.map(team => (
-                                        <tr key={team.id}>
-                                            <td className="border-bottom-0">
-                                                <h6 className="fw-semibold mb-0">{team.id}</h6>
-                                            </td>
-                                            <td className="border-bottom-0">
-                                                <h6 className="fw-semibold mb-1">
-                                                {team.name}
-                                                </h6>
-                                            </td>
-                                            <td className="border-bottom-0">
-                                                <p className="mb-0 fw-normal">
-                                                    {team.slug_name}
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {!isLoaded && (
+                                            <tr>
+                                                <td colSpan="3">
+                                                    <h6 className="mb-0 text-sm text-center">
+                                                        Loading...
+                                                    </h6>
+                                                </td>
+                                            </tr>
+                                        )}
+                                        {isLoaded && teams.map((team) => (
+                                            <tr key={team.id}>
+                                                <td>
+                                                    <h6 className="mb-0 text-sm">
+                                                        {team.name}
+                                                    </h6>
+                                                </td>
+                                                <td>
+                                                    <h6 className="mb-0 text-sm">
+                                                        {team.slug_name}
+                                                    </h6>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
-    );
+		</>
+	);
 };
