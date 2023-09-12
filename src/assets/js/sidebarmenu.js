@@ -7,8 +7,8 @@ File: js
 // ==============================================================
 // Auto select left navbar
 // ==============================================================
-$(function () {
-	/* "use strict";
+/*$(function () {
+	 "use strict";
 	var url = window.location + "";
 	var path = url.replace(
 		window.location.protocol + "//" + window.location.host + "/",
@@ -48,5 +48,5 @@ $(function () {
 	});
 	$("#sidebarnav >li >a.has-arrow").on("click", function (e) {
 		e.preventDefault();
-	}); */
-});
+	});
+}); */

@@ -11,7 +11,7 @@ export default function SideBar() {
                             className="text-nowrap logo-img"
                         >
                             <img
-                                src="/src/assets/images/logo_x2.png"
+                                src="/images/logo_x2.png"
                                 width="180"
                                 alt=""
                             />

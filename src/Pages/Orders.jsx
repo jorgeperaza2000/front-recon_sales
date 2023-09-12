@@ -1,173 +1,87 @@
+import { useState, useEffect } from "react";
+
 export const Orders = () => {
-	return (
-		<>
-			<div className="col-lg-12 d-flex align-items-stretch">
-				<div className="card w-100">
+    const [teams, setTeams] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
+    useEffect(() => {
+        setIsLoaded(false)
+        fetch('https://api-tdd.vercel.app/api/api/teams')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                setTeams(data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            })
+            .finally(() => {
+                setIsLoaded(true)
+            });
+    }, []);
+
+    return (
+        <>
+            <div className="col-lg-12 d-flex align-items-stretch">
+                <div className="card w-100">
                     <div className="card-header d-flex align-middle justify-content-between">
                         <h5 className="card-title fw-semibold my-auto">
-							Orders
-						</h5>
+                            Orders
+                        </h5>
                         <div>
                             <button className="btn btn-primary"><i className="ti ti-plus fs-4"></i> New</button>
                         </div>
                     </div>
-					<div className="card-body p-4">
-						<div className="table-responsive">
-							<table className="table table-striped text-nowrap mb-0 align-middle">
-								<thead className="text-dark fs-4">
-									<tr>
-										<th className="border-bottom-0">
-											<h6 className="fw-semibold mb-0">Id</h6>
-										</th>
-										<th className="border-bottom-0">
-											<h6 className="fw-semibold mb-0">
-												Assigned
-											</h6>
-										</th>
-										<th className="border-bottom-0">
-											<h6 className="fw-semibold mb-0">
-												Name
-											</h6>
-										</th>
-										<th className="border-bottom-0">
-											<h6 className="fw-semibold mb-0">
-												Priority
-											</h6>
-										</th>
-										<th className="border-bottom-0">
-											<h6 className="fw-semibold mb-0">
-												Budget
-											</h6>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-0">1</h6>
-										</td>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-1">
-												Sunil Joshi
-											</h6>
-											<span className="fw-normal">
-												Web Designer
-											</span>
-										</td>
-										<td className="border-bottom-0">
-											<p className="mb-0 fw-normal">
-												Elite Admin
-											</p>
-										</td>
-										<td className="border-bottom-0">
-											<div className="d-flex align-items-center gap-2">
-												<span className="badge bg-primary rounded-3 fw-semibold">
-													Low
-												</span>
-											</div>
-										</td>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-0 fs-4">
-												$3.9
-											</h6>
-										</td>
-									</tr>
-									<tr>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-0">2</h6>
-										</td>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-1">
-												Andrew McDownland
-											</h6>
-											<span className="fw-normal">
-												Project Manager
-											</span>
-										</td>
-										<td className="border-bottom-0">
-											<p className="mb-0 fw-normal">
-												Real Homes WP Theme
-											</p>
-										</td>
-										<td className="border-bottom-0">
-											<div className="d-flex align-items-center gap-2">
-												<span className="badge bg-secondary rounded-3 fw-semibold">
-													Medium
-												</span>
-											</div>
-										</td>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-0 fs-4">
-												$24.5k
-											</h6>
-										</td>
-									</tr>
-									<tr>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-0">3</h6>
-										</td>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-1">
-												Christopher Jamil
-											</h6>
-											<span className="fw-normal">
-												Project Manager
-											</span>
-										</td>
-										<td className="border-bottom-0">
-											<p className="mb-0 fw-normal">
-												MedicalPro WP Theme
-											</p>
-										</td>
-										<td className="border-bottom-0">
-											<div className="d-flex align-items-center gap-2">
-												<span className="badge bg-danger rounded-3 fw-semibold">
-													High
-												</span>
-											</div>
-										</td>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-0 fs-4">
-												$12.8k
-											</h6>
-										</td>
-									</tr>
-									<tr>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-0">4</h6>
-										</td>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-1">
-												Nirav Joshi
-											</h6>
-											<span className="fw-normal">
-												Frontend Engineer
-											</span>
-										</td>
-										<td className="border-bottom-0">
-											<p className="mb-0 fw-normal">
-												Hosting Press HTML
-											</p>
-										</td>
-										<td className="border-bottom-0">
-											<div className="d-flex align-items-center gap-2">
-												<span className="badge bg-success rounded-3 fw-semibold">
-													Critical
-												</span>
-											</div>
-										</td>
-										<td className="border-bottom-0">
-											<h6 className="fw-semibold mb-0 fs-4">
-												$2.4k
-											</h6>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</>
-	);
+                    <div className="card-body p-4">
+                        <div className="table-responsive">
+                            <table className="table table-striped text-nowrap mb-0 align-middle">
+                                <thead className="text-dark fs-4">
+                                    <tr>
+                                        <th className="border-bottom-0">
+                                            <h6 className="fw-semibold mb-0">Id</h6>
+                                        </th>
+                                        <th className="border-bottom-0">
+                                            <h6 className="fw-semibold mb-0">
+                                                Name
+                                            </h6>
+                                        </th>
+                                        <th className="border-bottom-0">
+                                            <h6 className="fw-semibold mb-0">
+                                                Abbreviation
+                                            </h6>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {!isLoaded &&
+                                        <tr>
+                                            <td colSpan="3" className="border-bottom-0 text-center">
+                                                <h6 className="fw-semibold mb-0">Loading...</h6>
+                                            </td>
+                                        </tr>
+                                    }
+                                    {isLoaded && teams.map(team => (
+                                        <tr key={team.id}>
+                                            <td className="border-bottom-0">
+                                                <h6 className="fw-semibold mb-0">{team.id}</h6>
+                                            </td>
+                                            <td className="border-bottom-0">
+                                                <h6 className="fw-semibold mb-1">
+                                                {team.name}
+                                                </h6>
+                                            </td>
+                                            <td className="border-bottom-0">
+                                                <p className="mb-0 fw-normal">
+                                                    {team.slug_name}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
